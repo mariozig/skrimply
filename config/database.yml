@@ -1,0 +1,14 @@
+development:
+  adapter: postgresql
+  database: development_skrimply
+  host: localhost
+  
+production:
+  adapter: postgresql
+  database: production_skrimply
+  host: localhost
+  
+test:
+  adapter: postgresql
+  database: test_skrimply
+  host: localhost
