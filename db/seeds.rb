@@ -70,12 +70,3 @@ bangarang_album = Release.create!(name: "Bangarang", release_kind_id: album_rele
 bangarang_album.genres = [electronic_genre]
 bangarang_album.artist_releases.create!(artist_id: skrillex.id, artistic_role_id: ArtisticRole.owner.id)
 bangarang_album.release_tracks.create!(track_id: bangarang.id, position: 2)
-
-
-
-
-
-
-
-
-
