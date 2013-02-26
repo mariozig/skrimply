@@ -1,0 +1,32 @@
+<div class="page-header">
+  <h1><%= @track.name %> <small>track</small></h1>
+</div>
+
+<h2>Authoring Artist</h2>
+<%= link_to @track.owning_artist.name.titleize, artist_path(@track.owning_artist) %>
+
+<h2>Features Artists</h2>
+<% @track.featuring_artists.each do |artist| %>
+  <%= link_to artist.name.titleize, artist_path(artist) %>
+<% end %>
+
+<h2>Duration</h2>
+<%= @track.duration %>
+
+<h2>Lyrics</h2>
+<blockquote>
+  <%= @track.lyrics %>
+</blockquote>
+
+<h2>Genres</h2>
+<ul>
+  <% @track.genres.each do |genre| %>
+    <li>
+      <%= link_to genre.name.titleize, genre_path(genre) %>
+    </li>
+  <% end %>
+</ul>
+
+
+<%= link_to 'Edit', edit_track_path(@track) %> |
+<%= link_to 'Back', tracks_path %>

@@ -1,0 +1,53 @@
+<div class="page-header">
+  <h1><%= @artist.name %> <small>artist</small></h1>
+</div>
+
+<h2>Releases</h2>
+<ul>
+  <% @artist.releases.each do |release| %>
+    <li>
+      <span class="label label-info"><%= release.release_kind.kind.titleize %></span>
+      <%= link_to release.name.titleize, release_path(release) %>
+    </li>
+  <% end %>
+</ul>
+
+<h2>All Tracks</h2>
+<ul>
+  <% @artist.tracks.each do |track| %>
+    <li>
+      <%= link_to track.name.titleize, track_path(track) %>
+    </li>
+  <% end %>
+</ul>
+
+<h3>Authored</h3>
+<ul>
+  <% @artist.tracks_owned.each do |track| %>
+    <li>
+      <%= link_to track.name.titleize, track_path(track) %>
+    </li>
+  <% end %>
+</ul>
+
+<h3>Featured On</h3>
+<ul>
+  <% @artist.tracks_featured_on.each do |track| %>
+    <li>
+      <%= link_to track.name.titleize, track_path(track) %> by <%= link_to track.owner.name.titleize, artist_path(track.owner) %>
+
+    </li>
+  <% end %>
+</ul>
+
+<h2>Genres</h2>
+<ul>
+  <% @artist.genres.each do |genre| %>
+    <li>
+      <%= link_to genre.name.titleize, genre_path(genre) %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to 'Edit', edit_artist_path(@artist) %> |
+<%= link_to 'Back', artists_path %>

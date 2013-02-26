@@ -12,6 +12,7 @@ featured_role = ArtisticRole.create!(role: "featured")
 
 album_release_kind = ReleaseKind.create!(kind: "album")
 
+
 ###### Sets up the following scenario: ######
 # Band: Cake
 # Band Genres: Pop, Indie, Alternative, Rock
@@ -39,6 +40,7 @@ fashion_nugget_album = Release.create!(name: "Fashion Nugget", release_kind_id: 
 fashion_nugget_album.genres = [rock_genre, indie_genre]
 fashion_nugget_album.artist_releases.create!(artist_id: cake.id, artistic_role_id: ArtisticRole.owner.id)
 fashion_nugget_album.release_tracks.create!(track_id: nugget.id, position: 11)
+
 
 ###### Sets up the following scenario: ######
 # Band: Skrillex

@@ -1,4 +1,9 @@
 Skrimply::Application.routes.draw do
+  resources :artists
+  resources :releases
+  resources :tracks
+  resources :genres
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
