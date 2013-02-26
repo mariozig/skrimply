@@ -5,7 +5,7 @@
 <h2>Authoring Artist</h2>
 <%= link_to @track.owning_artist.name.titleize, artist_path(@track.owning_artist) %>
 
-<h2>Features Artists</h2>
+<h2>Featuring Artists</h2>
 <% @track.featuring_artists.each do |artist| %>
   <%= link_to artist.name.titleize, artist_path(artist) %>
 <% end %>

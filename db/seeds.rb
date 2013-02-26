@@ -1,11 +1,54 @@
 user = User.create!(first_name: "Barack", last_name: "Obama", email: "barrypuffpuff@example.com")
 
-pop_genre = Genre.create!(name: "pop")
-indie_genre = Genre.create!(name: "indie")
-alternative_genre = Genre.create!(name: "alternative")
-rock_genre = Genre.create!(name: "rock")
-house_genre = Genre.create!(name: "house")
-electronic_genre = Genre.create!(name: "electronic")
+genres = %w[Alternative
+  Ambient
+  Avantgarde
+  Blues
+  Celtic
+  Children
+  Christian
+  Classical
+  Club
+  Country
+  Cult
+  Dance
+  Disco
+  Electronic
+  Ethnic/Folk
+  Funk
+  Gospel
+  Hardcore
+  Hip-Hop
+  House
+  Indie
+  Industrial
+  Jazz
+  Latin
+  Metal
+  Musical
+  New Age
+  Pop
+  Punk
+  R&B
+  Rap
+  Reggae
+  Rock
+  Soul
+  Techno
+  Trance
+  Trip-Hop]
+genres << "Rock & Roll"
+
+genres.each do |genre|
+  Genre.create!(name: genre.downcase)
+end
+
+pop_genre = Genre.find_by_name("pop")
+indie_genre = Genre.find_by_name("indie")
+alternative_genre = Genre.find_by_name("alternative")
+rock_genre = Genre.find_by_name("rock")
+house_genre = Genre.find_by_name("house")
+electronic_genre = Genre.find_by_name("electronic")
 
 owner_role = ArtisticRole.create!(role: "owner")
 featured_role = ArtisticRole.create!(role: "featured")

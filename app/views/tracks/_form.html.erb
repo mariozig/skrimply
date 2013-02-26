@@ -13,7 +13,10 @@
 
   <%= f.input :lyrics %>
 
-  <%= f.association :artists, as: :radio_buttons %>
+  <%= f.association :owning_artists, as: :check_boxes %>
+
+  <%= f.association :featuring_artists, as: :check_boxes %>
+
 
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>

@@ -11,7 +11,7 @@ class Track < ActiveRecord::Base
   has_many :release_tracks
   has_many :releases, :through => :release_tracks
 
-  attr_accessible :duration, :lyrics, :name, :genre_ids, :artist_ids
+  attr_accessible :duration, :lyrics, :name, :genre_ids, :owning_artist_ids, :featuring_artist_ids
 
   # Since we typically only have 1 track owner, this is a convenience method
   def owning_artist
