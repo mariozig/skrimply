@@ -35,7 +35,7 @@ cake = Artist.create!(name: "Cake")
 cake.genres = [pop_genre, indie_genre, alternative_genre, rock_genre]
 nugget = Track.create!(name: "Nugget", duration: "3:59", lyrics: "crunch like nuts in the mouths of squirrels")
 nugget.genres = [rock_genre]
-nugget.artist_tracks.create!(artist_id: cake.id, artistic_role_id: ArtisticRole.owner.id)
+nugget.owning_artists = [cake]
 fashion_nugget_album = Release.create!(name: "Fashion Nugget", release_kind_id: album_release_kind.id, release_date: "1996")
 fashion_nugget_album.genres = [rock_genre, indie_genre]
 fashion_nugget_album.artist_releases.create!(artist_id: cake.id, artistic_role_id: ArtisticRole.owner.id)
@@ -66,8 +66,8 @@ sirah = Artist.create!(name: "Sirah")
 sirah.genres = [house_genre, electronic_genre]
 bangarang = Track.create!(name: "Bangarang", duration: "3:42", lyrics: "eatin fundip")
 bangarang.genres = [house_genre, electronic_genre]
-bangarang.artist_tracks.create!(artist_id: skrillex.id, artistic_role_id: ArtisticRole.owner.id)
-bangarang.artist_tracks.create!(artist_id: sirah.id, artistic_role_id: ArtisticRole.featured.id)
+bangarang.owning_artists = [skrillex]
+bangarang.featuring_artists = [sirah]
 bangarang_album = Release.create!(name: "Bangarang", release_kind_id: album_release_kind.id, release_date: "2012")
 bangarang_album.genres = [electronic_genre]
 bangarang_album.artist_releases.create!(artist_id: skrillex.id, artistic_role_id: ArtisticRole.owner.id)
