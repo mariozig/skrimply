@@ -1,12 +1,12 @@
 class ArtisticRole < ActiveRecord::Base
   attr_accessible :description, :role
 
-  # TODO: This is lame.
+  # TODO: This is lame.  This is an attempt to prevent a hit on the DB.
   def self.owner
-    find(1)
+    1
   end
 
   def self.featured
-    find(2)
+    2
   end
 end

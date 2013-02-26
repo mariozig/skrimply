@@ -9,10 +9,10 @@ class Artist < ActiveRecord::Base
   attr_accessible :name, :genre_ids
 
   def tracks_owned
-    tracks.where(:artist_tracks => { :artistic_role_id => ArtisticRole.owner.id} )
+    tracks.where(:artist_tracks => { :artistic_role_id => ArtisticRole.owner } )
   end
 
   def tracks_featured_on
-    tracks.where(:artist_tracks => { :artistic_role_id => ArtisticRole.featured.id } )
+    tracks.where(:artist_tracks => { :artistic_role_id => ArtisticRole.featured } )
   end
 end
