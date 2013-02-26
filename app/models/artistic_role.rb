@@ -1,6 +1,7 @@
 class ArtisticRole < ActiveRecord::Base
   attr_accessible :description, :role
 
+  # TODO: This is lame.
   def self.owner
     find(1)
   end

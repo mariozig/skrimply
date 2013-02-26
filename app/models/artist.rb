@@ -6,7 +6,7 @@ class Artist < ActiveRecord::Base
   has_many :artist_genres
   has_many :genres, :through => :artist_genres
 
-  attr_accessible :name
+  attr_accessible :name, :genre_ids
 
   def tracks_owned
     tracks.where(:artist_tracks => { :artistic_role_id => ArtisticRole.owner.id} )
