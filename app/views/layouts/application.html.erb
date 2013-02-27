@@ -8,6 +8,18 @@
 </head>
 <body>
 
+<div class="navbar navbar-fixed-top navbar-inverse">
+  <div class="navbar-inner">
+    <a class="brand" href="/">Skrimp.ly</a>
+    <ul class="nav">
+      <li><%= link_to "Artists", artists_path %></li>
+      <li><%= link_to "Releases", releases_path %></li>
+      <li><%= link_to "Tracks", tracks_path %></li>
+      <li><%= link_to "Genres", genres_path %></li>
+    </ul>
+  </div>
+</div>
+
 <% if notice %>
   <div class="alert alert-success fade in" data-alert="alert">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
