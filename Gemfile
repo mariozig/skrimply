@@ -27,6 +27,7 @@ group :development do
   gem 'rspec-rails'
   # Glitter
   gem "rails-erd"
+  gem "debugger"
 end
 
 
