@@ -6,10 +6,11 @@
 <ul>
   <% @artist.releases.each do |release| %>
     <li>
-      <span class="label label-info"><%= release.release_kind.kind.titleize %></span>
+      <span class="label label-info"><%= release.release_kind.name.titleize %></span>
       <%= link_to release.name.titleize, release_path(release) %>
     </li>
   <% end %>
+  <%= link_to "Add", new_release_path %>
 </ul>
 
 <h2>All Tracks</h2>
@@ -19,6 +20,7 @@
       <%= link_to track.name.titleize, track_path(track) %>
     </li>
   <% end %>
+  <%= link_to "Add", new_track_path %>
 </ul>
 
 <h3>Authored</h3>

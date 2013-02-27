@@ -12,7 +12,7 @@
 <h2>Releases</h2>
 <% @genre.releases.each do |release| %>
   <p>
-    <span class="label label-info"><%= release.release_kind.kind.titleize %></span>
+    <span class="label label-info"><%= release.release_kind.name.titleize %></span>
     <%= link_to release.name, release_path(release) %>
   </p>
 <% end %>
