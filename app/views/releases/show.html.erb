@@ -1,0 +1,17 @@
+<div class="page-header">
+  <h1><%= @release.name %> <small>release</small></h1>
+</div>
+
+<h2>Kind</h2>
+<p>
+  <%= @release.release_kind.name %>
+</p>
+
+<h2>Authoring Artist</h2>
+<p>
+  <%= link_to @release.owning_artist.name.titleize, artist_path(@release.owning_artist) %>
+</p>
+
+
+<%= link_to 'Edit', edit_track_path(@release) %> |
+<%= link_to 'Back', releases_path %>
