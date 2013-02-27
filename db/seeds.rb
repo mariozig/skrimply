@@ -55,6 +55,8 @@ featured_role = ArtisticRole.create!(role: "featured")
 
 album_release_kind = ReleaseKind.create!(kind: "album")
 
+owsla_label = Label.create!(name: "OWSLA")
+
 
 ###### Sets up the following scenario: ######
 # Band: Cake

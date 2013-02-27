@@ -5,6 +5,8 @@
 <table class="table table-bordered table-striped">
   <tr>
     <th>Name</th>
+    <th>Author</th>
+    <th>Featuring</th>
     <th></th>
     <th></th>
   </tr>
@@ -12,6 +14,10 @@
 <% @tracks.each do |track| %>
   <tr>
     <td><%= link_to track.name, track %></td>
+    <td><%= link_to track.owning_artist.name, track.owning_artist %></td>
+    <td>
+      <%= track.featuring_artists.collect { |artist| link_to artist.name, artist }.join(",").html_safe %>
+    </td>
     <td><%= link_to 'Edit', edit_track_path(track) %></td>
     <td><%= link_to 'Destroy', track, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
