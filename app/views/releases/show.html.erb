@@ -10,6 +10,11 @@
   <%= @release.release_kind.name.titleize %>
 </p>
 
+<h2>Release Date</h2>
+<p>
+  <%= @release.release_date %>
+</p>
+
 <h2>Authoring Artist</h2>
 <p>
   <%= link_to @release.owning_artist.name.titleize, artist_path(@release.owning_artist) %>

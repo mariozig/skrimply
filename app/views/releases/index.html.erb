@@ -8,6 +8,7 @@
     <th>Kind</th>
     <th>Author</th>
     <th>Label</th>
+    <th>Release Date</th>
     <th></th>
     <th></th>
   </tr>
@@ -18,6 +19,7 @@
     <td><%= release.release_kind.name.titleize %></td>
     <td><%= link_to release.owning_artist.name, release.owning_artist %></td>
     <td><%= release.label_name %></td>
+    <td><%= release.release_date_friendly %></td>
     <td><%= link_to 'Edit', edit_release_path(release) %></td>
     <td><%= link_to 'Destroy', release, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>

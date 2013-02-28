@@ -21,4 +21,8 @@ class Release < ActiveRecord::Base
   def label_name
     label.nil? ? "unknown" : label.name
   end
+
+  def release_date_friendly
+    release_date.nil? ? "unknown" : release_date
+  end
 end
