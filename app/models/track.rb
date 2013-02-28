@@ -1,5 +1,6 @@
 class Track < ActiveRecord::Base
   belongs_to :submitting_user, :class_name => "User", :foreign_key => "user_id"
+
   has_many :definitions
   has_many :artist_tracks
   has_many :artists, :through => :artist_tracks
@@ -19,6 +20,9 @@ class Track < ActiveRecord::Base
 
   attr_accessible :duration, :lyrics, :name, :genre_ids, :owning_artist_ids,
                   :featuring_artist_ids, :release_tracks_attributes
+
+  validates :submitting_user, :presence => true
+  validates :owning_artist_ids, :presence => true
 
   # Since we typically only have 1 track owner, this is a convenience method
   def owning_artist

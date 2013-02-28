@@ -3,7 +3,6 @@ class Release < ActiveRecord::Base
   belongs_to :release_kind
   belongs_to :submitting_user, :class_name => "User", :foreign_key => "user_id"
 
-
   has_many :genre_releases
   has_many :genres, :through => :genre_releases
   has_many :release_tracks
@@ -12,6 +11,10 @@ class Release < ActiveRecord::Base
   has_many :owning_artists, :through => :owning_artist_releases, :source => :artist
 
   attr_accessible :label_id, :location, :name, :release_date, :release_kind_id, :owning_artist_ids
+
+  validates :genre_id, :presence => true
+  validates :release_kind_id, :presence => true
+  validates :owning_artist_ids, :presence => true
 
   # Since we typically only have 1 release owner, this is a convenience method
   def owning_artist
