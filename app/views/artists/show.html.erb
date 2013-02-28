@@ -2,6 +2,9 @@
   <h1><%= @artist.name %> <small>artist</small></h1>
 </div>
 
+<h2>Submitted By</h2>
+<h4><%= @artist.submitting_user.display_name %></h4>
+
 <h2>Releases</h2>
 <ul>
   <% @artist.releases.each do |release| %>

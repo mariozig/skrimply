@@ -19,6 +19,7 @@ class TracksController < ApplicationController
 
   def create
     @track = Track.new(params[:track])
+    @track.submitting_user = current_user
 
     if @track.save
       redirect_to @track, notice: 'Track created.'

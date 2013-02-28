@@ -18,6 +18,7 @@ class ReleasesController < ApplicationController
 
   def create
     @release = Release.new(params[:release])
+    @release.submitting_user = current_user
 
     if @release.save
       redirect_to @release, notice: 'Release created.'

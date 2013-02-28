@@ -1,6 +1,8 @@
 class Release < ActiveRecord::Base
   belongs_to :label
   belongs_to :release_kind
+  belongs_to :submitting_user, :class_name => "User", :foreign_key => "user_id"
+
 
   has_many :genre_releases
   has_many :genres, :through => :genre_releases

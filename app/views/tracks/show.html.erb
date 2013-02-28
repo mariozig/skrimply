@@ -1,6 +1,8 @@
 <div class="page-header">
   <h1><%= @track.name %> <small>track</small></h1>
 </div>
+<h2>Submitted By</h2>
+<h4><%= @track.submitting_user.display_name %></h4>
 
 <h2>Authoring Artist</h2>
 <%= link_to @track.owning_artist.name.titleize, artist_path(@track.owning_artist) %>

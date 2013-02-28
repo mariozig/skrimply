@@ -2,6 +2,9 @@
   <h1><%= @release.name %> <small>release</small></h1>
 </div>
 
+<h2>Submitted By</h2>
+<h4><%= @release.submitting_user.display_name %></h4>
+
 <h2>Kind</h2>
 <p>
   <%= @release.release_kind.name.titleize %>

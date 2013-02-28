@@ -18,6 +18,7 @@ before_filter :authenticate_user!
 
   def create
     @artist = Artist.new(params[:artist])
+    @artist.submitting_user = current_user
 
     if @artist.save
       redirect_to @artist, notice: 'Artist created.'
