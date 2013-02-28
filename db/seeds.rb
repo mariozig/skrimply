@@ -53,7 +53,7 @@ electronic_genre = Genre.find_by_name("electronic")
 owner_role = ArtisticRole.create!(role: "owner")
 featured_role = ArtisticRole.create!(role: "featured")
 
-album_release_kind = ReleaseKind.create!(kind: "album")
+album_release_kind = ReleaseKind.create!(name: "album")
 
 owsla_label = Label.create!(name: "OWSLA")
 
@@ -81,10 +81,14 @@ cake.genres = [pop_genre, indie_genre, alternative_genre, rock_genre]
 nugget = Track.create!(name: "Nugget", duration: "3:59", lyrics: "crunch like nuts in the mouths of squirrels")
 nugget.genres << rock_genre
 nugget.owning_artists << cake
+open_book = Track.create!(name: "Open Book", duration: "3:45", lyrics: "polished hardwood floors")
+open_book.genres << rock_genre
+open_book.owning_artists << cake
 fashion_nugget_album = Release.create!(name: "Fashion Nugget", release_kind_id: album_release_kind.id, release_date: "1996")
 fashion_nugget_album.genres = [rock_genre, indie_genre]
-fashion_nugget_album.artist_releases.create!(artist_id: cake.id, artistic_role_id: ArtisticRole.owner)
+fashion_nugget_album.owning_artists << cake
 fashion_nugget_album.release_tracks.create!(track_id: nugget.id, position: 11)
+fashion_nugget_album.release_tracks.create!(track_id: open_book.id, position: 4)
 
 
 ###### Sets up the following scenario: ######
@@ -113,7 +117,7 @@ bangarang = Track.create!(name: "Bangarang", duration: "3:42", lyrics: "eatin fu
 bangarang.genres = [house_genre, electronic_genre]
 bangarang.owning_artists << skrillex
 bangarang.featuring_artists << sirah
-bangarang_album = Release.create!(name: "Bangarang", release_kind_id: album_release_kind.id, release_date: "2012")
+bangarang_album = Release.create!(name: "Bangarang", release_kind_id: album_release_kind.id, release_date: "2012", label_id: owsla_label.id)
 bangarang_album.genres = [electronic_genre]
-bangarang_album.artist_releases.create!(artist_id: skrillex.id, artistic_role_id: ArtisticRole.owner)
+bangarang_album.owning_artists << skrillex
 bangarang_album.release_tracks.create!(track_id: bangarang.id, position: 2)

@@ -1,4 +1,4 @@
-<%= simple_form_for(@release, :html => {:class => 'form-vertical' }) do |f|  %>
+<%= simple_form_for(@release, :html => {:class => 'form-horizontal' }) do |f|  %>
 
   <% if notification = f.error_notification %>
     <div class="alert alert-error fade in">
@@ -8,6 +8,8 @@
   <% end %>
 
   <%= f.input :name %>
+
+  <%= f.association :owning_artists %>
 
   <%= f.association :release_kind %>
 

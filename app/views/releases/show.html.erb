@@ -4,7 +4,7 @@
 
 <h2>Kind</h2>
 <p>
-  <%= @release.release_kind.name %>
+  <%= @release.release_kind.name.titleize %>
 </p>
 
 <h2>Authoring Artist</h2>
@@ -12,6 +12,24 @@
   <%= link_to @release.owning_artist.name.titleize, artist_path(@release.owning_artist) %>
 </p>
 
+<h2>Tracks on This Release</h2>
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>Track Number</th>
+    <th>Name</th>
+  </tr>
 
-<%= link_to 'Edit', edit_track_path(@release) %> |
+  <% @release.release_tracks.each do |release_track| %>
+    <tr>
+      <td><%= release_track.position %></td>
+      <td><%= link_to release_track.track.name, release_track.track %></td>
+    </tr>
+  <% end %>
+</table>
+<p>
+  <%= link_to "Add a Track", new_release_track_path(@release) %>
+</p>
+
+
+<%= link_to 'Edit', edit_release_path(@release) %> |
 <%= link_to 'Back', releases_path %>

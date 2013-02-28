@@ -10,6 +10,7 @@ class TracksController < ApplicationController
 
   def new
     @track = Track.new
+    @track.release_tracks.build(:release_id => params[:release_id])
   end
 
   def edit
@@ -22,6 +23,7 @@ class TracksController < ApplicationController
     if @track.save
       redirect_to @track, notice: 'Track created.'
     else
+      # debugger
       render action: "new"
     end
   end

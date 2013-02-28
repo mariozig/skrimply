@@ -1,4 +1,4 @@
-<%= simple_form_for(@track, :html => {:class => 'form-vertical' }) do |f|  %>
+<%= simple_form_for(@track, :html => {:class => 'form-horizontal' }) do |f|  %>
 
   <% if notification = f.error_notification %>
     <div class="alert alert-error fade in">
@@ -7,9 +7,12 @@
     </div>
   <% end %>
 
+  <legend>Track Info</legend>
   <%= f.input :name %>
 
-  <%= f.association :genres, as: :check_boxes %>
+  <%= f.input :duration %>
+
+  <%= f.association :genres %>
 
   <%= f.input :lyrics %>
 
@@ -17,6 +20,12 @@
 
   <%= f.association :featuring_artists, as: :check_boxes %>
 
+  <legend>Release Info (optional)</legend>
+  <%= f.simple_fields_for :release_tracks do |rt| %>
+    <%= rt.association :release %>
+    <%= rt.input :position %>
+    <%= rt.input :release_id, as: :hidden %>
+  <% end %>
 
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>

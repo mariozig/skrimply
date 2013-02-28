@@ -27,6 +27,12 @@
   <% end %>
 </ul>
 
+<h2>On Releases</h2>
+<p>
+  <% @track.release_tracks.each do |release_track| %>
+    <%= link_to release_track.release.name.titleize, release_path(release_track.release) %> as track #<%= release_track.position %>
+  <% end %>
+</p>
 
 <%= link_to 'Edit', edit_track_path(@track) %> |
 <%= link_to 'Back', tracks_path %>

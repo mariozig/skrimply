@@ -1,4 +1,4 @@
-<%= simple_form_for(@artist, :html => {:class => 'form-vertical' }) do |f|  %>
+<%= simple_form_for(@artist, :html => {:class => 'form-horizontal' }) do |f|  %>
 
   <% if notification = f.error_notification %>
     <div class="alert alert-error fade in">
@@ -7,10 +7,9 @@
     </div>
   <% end %>
 
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+  <%= f.input :name %>
 
-  <%= f.association :genres, as: :check_boxes %>
+  <%= f.association :genres %>
 
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>

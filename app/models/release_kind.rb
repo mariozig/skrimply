@@ -1,3 +1,3 @@
 class ReleaseKind < ActiveRecord::Base
-  attr_accessible :kind
+  attr_accessible :name
 end
