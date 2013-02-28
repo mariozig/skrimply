@@ -10,13 +10,23 @@
 
 <div class="navbar navbar-fixed-top navbar-inverse">
   <div class="navbar-inner">
-    <%= link_to "Skrimp.ly", root_url, :class => "brand" %>
-    <ul class="nav">
-      <li><%= link_to "Artists", artists_path %></li>
-      <li><%= link_to "Releases", releases_path %></li>
-      <li><%= link_to "Tracks", tracks_path %></li>
-      <li><%= link_to "Genres", genres_path %></li>
-    </ul>
+    <div class="container">
+      <%= link_to "Skrimp.ly", root_url, :class => "brand" %>
+      <ul class="nav">
+        <li><%= link_to "Artists", artists_path %></li>
+        <li><%= link_to "Releases", releases_path %></li>
+        <li><%= link_to "Tracks", tracks_path %></li>
+        <li><%= link_to "Genres", genres_path %></li>
+      </ul>
+      <ul class="nav pull-right">
+        <% if user_signed_in? %>
+          <li><%= link_to "Sign Out", :destroy_user_session, :method => :delete %></li>
+        <% else %>
+          <li><a href="#loginModal" role="button" data-toggle="modal">Login</a></li>
+          <li><a href="#registerModal" role="button" data-toggle="modal">Register</a></li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </div>
 
@@ -31,5 +41,7 @@
   <%= yield %>
 </div>
 
+<%= render "devise/sessions/new_modalized" %>
+<%= render "devise/registrations/new_modalized" %>
 </body>
 </html>
