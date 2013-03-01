@@ -6,11 +6,11 @@ Skrimply::Application.routes.draw do
   end
 
   resources :tracks do
-    resources :defintions, :only => [:create]
+    resources :definitions, :only => [:create]
   end
 
   resources :artists
-  resources :defintions
+  resources :definitions
   resources :genres
   resources :users, :only => [:index, :show]
 
