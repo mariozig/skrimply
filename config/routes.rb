@@ -5,9 +5,8 @@ Skrimply::Application.routes.draw do
     resources :tracks, :only => [:create, :new]
   end
 
-  resources :tracks do
-    resources :definitions, :only => [:create]
-  end
+  resources :tracks
+  resources :definitions, :only => [:create]
 
   resources :artists
   resources :definitions

@@ -12,7 +12,7 @@
 
 class Definition < ActiveRecord::Base
   belongs_to :track
-  belongs_to :user
+  belongs_to :submitting_user, :class_name => "User", :foreign_key => "user_id"
 
-  attr_accessible :text, :track_id, :user_id
+  attr_accessible :text, :track_id
 end
