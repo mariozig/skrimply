@@ -43,6 +43,7 @@ class Track < ActiveRecord::Base
     owning_artists.first
   end
 
+  # REV: Duplicate method?
   def owning_artist
     owning_artists.first
   end

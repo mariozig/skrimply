@@ -38,6 +38,7 @@ class Release < ActiveRecord::Base
     owning_artists.first
   end
 
+  # REV: You could argue these are presentation methods and should be pushed to the view.
   def label_name
     label.nil? ? "unknown" : label.name
   end

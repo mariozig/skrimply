@@ -15,6 +15,7 @@ class ReleaseTrack < ActiveRecord::Base
   belongs_to :release
   belongs_to :track, :inverse_of => :release_tracks
 
+  # REV: Might want to create an index in the db if you're always going to order it this way.
   default_scope order("position ASC")
 
   attr_accessible :disc_number, :position, :release_id, :track_id

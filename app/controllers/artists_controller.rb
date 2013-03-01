@@ -25,6 +25,7 @@ class ArtistsController < ApplicationController
     if @artist.save
       redirect_to @artist, notice: 'Artist created.'
     else
+      # REV: Don't forget to take debugging things out.
       debugger
       render action: "new"
     end

@@ -21,6 +21,7 @@ class Artist < ActiveRecord::Base
 
   attr_accessible :name, :genre_ids
 
+  # REV: You can combine validations for a single attribute.
   validates :name, :presence => true
   validates :name, :uniqueness => true
 

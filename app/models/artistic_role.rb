@@ -12,6 +12,7 @@
 class ArtisticRole < ActiveRecord::Base
   attr_accessible :description, :role
 
+  # REV: You could also use a constant like ARTISTIC_ROLES[:owner] to solve this.
   # TODO: This is lame.  This is an attempt to prevent a hit on the DB.
   def self.owner
     1
