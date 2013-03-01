@@ -29,6 +29,8 @@ class Release < ActiveRecord::Base
 
   validates :name, :presence => true
   validates :name, :uniqueness => true
+  validates :release_kind, :presence => true
+  validates :owning_artist_ids, :presence => true
 
 
   # Since we typically only have 1 release owner, this is a convenience method

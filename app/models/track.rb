@@ -34,6 +34,10 @@ class Track < ActiveRecord::Base
   attr_accessible :duration, :lyrics, :name, :genre_ids, :owning_artist_ids,
                   :featuring_artist_ids, :release_tracks_attributes
 
+  validates :name, :presence => true
+  validates :lyrics, :presence => true
+  validates :owning_artist_ids, :presence => { :message => "at least 1 must be selected" }
+
   # Since we typically only have 1 track owner, this is a convenience method
   def owning_artist
     owning_artists.first

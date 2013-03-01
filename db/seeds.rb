@@ -86,27 +86,27 @@ cake.genres = [pop_genre, indie_genre, alternative_genre, rock_genre]
 
 nugget = Track.create!(name: "Nugget",
                        duration: "3:59",
-                       lyrics: "crunch like nuts in the mouths of squirrels")
-nugget.owning_artists << cake
+                       lyrics: "crunch like nuts in the mouths of squirrels",
+                       owning_artist_ids: [cake.id])
 nugget.submitting_user = skrimplybot
 nugget.save!
 nugget.genres << rock_genre
 
 open_book = Track.create!(name: "Open Book",
                           duration: "3:45",
-                          lyrics: "polished hardwood floors")
+                          lyrics: "polished hardwood floors",
+                          owning_artist_ids: [cake.id])
 open_book.submitting_user = skrimplybot
 open_book.save!
 open_book.genres << rock_genre
-open_book.owning_artists << cake
 
 fashion_nugget_album = Release.create!(name: "Fashion Nugget",
                                        release_kind_id: album_release_kind.id,
-                                       release_date: "1996")
+                                       release_date: "1996",
+                                       owning_artist_ids: [cake.id])
 fashion_nugget_album.submitting_user = skrimplybot
 fashion_nugget_album.save!
 fashion_nugget_album.genres = [rock_genre, indie_genre]
-fashion_nugget_album.owning_artists << cake
 fashion_nugget_album.release_tracks.create!(track_id: nugget.id, position: 11)
 fashion_nugget_album.release_tracks.create!(track_id: open_book.id, position: 4)
 
@@ -141,19 +141,19 @@ sirah.genres = [house_genre, electronic_genre]
 
 bangarang = Track.create!(name: "Bangarang",
                           duration: "3:42",
-                          lyrics: "eatin fundip")
+                          lyrics: "eatin fundip",
+                          owning_artist_ids: [skrillex.id])
 bangarang.submitting_user = skrimplybot
 bangarang.save!
 bangarang.genres = [house_genre, electronic_genre]
-bangarang.owning_artists << skrillex
 bangarang.featuring_artists << sirah
 
 bangarang_album = Release.create!(name: "Bangarang",
                                   release_kind_id: album_release_kind.id,
                                   release_date: "2012",
-                                  label_id: owsla_label.id)
+                                  label_id: owsla_label.id,
+                                  owning_artist_ids: [skrillex.id])
 bangarang_album.submitting_user = skrimplybot
 bangarang_album.save!
 bangarang_album.genres = [electronic_genre]
-bangarang_album.owning_artists << skrillex
 bangarang_album.release_tracks.create!(track_id: bangarang.id, position: 2)
