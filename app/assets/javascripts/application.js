@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
-// 
+//
 // Loads all Bootstrap javascripts
 //= require bootstrap
+
+//= require rangy-core-1.2.3.js
