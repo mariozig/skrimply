@@ -16,4 +16,9 @@ class ArtistRelease < ActiveRecord::Base
   belongs_to :release
 
   attr_accessible :artist_id, :artistic_role_id, :release_id
+
+  validates :release_id, :uniqueness => {
+                           :scope => [:artistic_role_id, :artist_id],
+                           :message => "an artist cannot be featured on or own a release twice"
+                         }
 end
