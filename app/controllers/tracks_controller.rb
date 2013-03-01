@@ -6,6 +6,7 @@ class TracksController < ApplicationController
 
   def show
     @track = Track.find(params[:id])
+    @definition = @track.definitions.build
   end
 
   def new
@@ -25,7 +26,6 @@ class TracksController < ApplicationController
     if @track.save
       redirect_to @track, notice: 'Track created.'
     else
-      # debugger
       render action: "new"
     end
   end

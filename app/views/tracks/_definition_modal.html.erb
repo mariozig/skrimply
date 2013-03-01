@@ -1,13 +1,38 @@
-<div id="definitionModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="definitionModal" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3>Define</h3>
+<%= simple_form_for(@definition) do |f| %>
+  <div id="definitionModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="definitionModal" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h2>Define Lyrics <small>write a bad romance</small></h2>
+    </div>
+    <div class="modal-body">
+      <div class="left">
+        <h3>These lyrics</h3>
+        <blockquote id="selectedSongLyrics"></blockquote>
+      </div>
+      <div class="right">
+        <h3>...mean</h3>
+        <% if user_signed_in? %>
+          <%= f.input :text, :as => :text,
+                             :label => false,
+                             :placeholder => "Your description here",
+                             :input_html => {
+                               :cols => 50, :rows => 5
+                             } %>
+        <% else %>
+          You must <a href="#loginModal" role="button" data-toggle="modal">be signed in</a>
+          or
+          <a href="#registerModal" role="button" data-toggle="modal">create an account</a> to leave your mark!
+        <% end %>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <% if user_signed_in? %>
+        <button class="btn btn-primary">Submit!</button>
+        <button class="btn" data-dismiss="modal" aria-hidden="true" id="cancelDefineSongModal">Cancel</button>
+      <% else %>
+        <a href="#loginModal" role="button" data-toggle="modal" class="btn btn-primary">Sign In!</a>
+        <a href="#registerModal" role="button" data-toggle="modal" class="btn btn-success">Sign Up</a>
+      <% end %>
+    </div>
   </div>
-  <div class="modal-body">
-    <div id="selectedSongLyrics"></div>
-  </div>
-  <div class="modal-footer">
-    <button class="btn btn-primary">Submit!</button>
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-  </div>
-</div>
+<% end %>
