@@ -16,9 +16,9 @@
 <%= @track.duration %>
 
 <h2>Lyrics</h2>
-<blockquote>
-  <%= @track.lyrics %>
-</blockquote>
+<div id="lyrics">
+  <%= simple_format(@track.lyrics) %>
+</div>
 
 <h2>Genres</h2>
 <ul>
@@ -38,3 +38,5 @@
 
 <%= link_to 'Edit', edit_track_path(@track) %> |
 <%= link_to 'Back', tracks_path %>
+
+<%= render 'tracks/definition_modal' %>
