@@ -10,8 +10,8 @@ class Artist < ActiveRecord::Base
 
   attr_accessible :name, :genre_ids
 
-  validates :submitting_user, :presence => true
   validates :name, :presence => true
+  validates :name, :uniqueness => true
 
   def tracks_owned
     tracks.where(:artist_tracks => { :artistic_role_id => ArtisticRole.owner } )
