@@ -26,9 +26,11 @@ gem 'jquery-rails'
 
 group :development do
   gem 'rspec-rails'
+  gem "debugger"
+
   # Glitter
   gem "rails-erd"
-  gem "debugger"
+  gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
 end
 
 

@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: artists
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  user_id    :integer
+#
+
 class Artist < ActiveRecord::Base
   belongs_to :submitting_user, :class_name => "User", :foreign_key => "user_id"
 
