@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130228213203) do
+ActiveRecord::Schema.define(:version => 20130301161819) do
 
   create_table "artist_genres", :force => true do |t|
     t.integer  "artist_id"
@@ -19,6 +19,9 @@ ActiveRecord::Schema.define(:version => 20130228213203) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "artist_genres", ["artist_id"], :name => "index_artist_genres_on_artist_id"
+  add_index "artist_genres", ["genre_id"], :name => "index_artist_genres_on_genre_id"
 
   create_table "artist_releases", :force => true do |t|
     t.integer  "artist_id"
@@ -28,6 +31,10 @@ ActiveRecord::Schema.define(:version => 20130228213203) do
     t.datetime "updated_at",       :null => false
   end
 
+  add_index "artist_releases", ["artist_id"], :name => "index_artist_releases_on_artist_id"
+  add_index "artist_releases", ["artistic_role_id"], :name => "index_artist_releases_on_artistic_role_id"
+  add_index "artist_releases", ["release_id"], :name => "index_artist_releases_on_release_id"
+
   create_table "artist_tracks", :force => true do |t|
     t.integer  "artist_id"
     t.integer  "track_id"
@@ -35,6 +42,10 @@ ActiveRecord::Schema.define(:version => 20130228213203) do
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end
+
+  add_index "artist_tracks", ["artist_id"], :name => "index_artist_tracks_on_artist_id"
+  add_index "artist_tracks", ["artistic_role_id"], :name => "index_artist_tracks_on_artistic_role_id"
+  add_index "artist_tracks", ["track_id"], :name => "index_artist_tracks_on_track_id"
 
   create_table "artistic_roles", :force => true do |t|
     t.string   "role"
@@ -51,6 +62,7 @@ ActiveRecord::Schema.define(:version => 20130228213203) do
   end
 
   add_index "artists", ["name"], :name => "index_artists_on_name", :unique => true
+  add_index "artists", ["user_id"], :name => "index_artists_on_user_id"
 
   create_table "definitions", :force => true do |t|
     t.string   "text"
@@ -60,6 +72,9 @@ ActiveRecord::Schema.define(:version => 20130228213203) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "definitions", ["track_id"], :name => "index_definitions_on_track_id"
+  add_index "definitions", ["user_id"], :name => "index_definitions_on_user_id"
+
   create_table "genre_releases", :force => true do |t|
     t.integer  "release_id"
     t.integer  "genre_id"
@@ -67,12 +82,18 @@ ActiveRecord::Schema.define(:version => 20130228213203) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "genre_releases", ["genre_id"], :name => "index_genre_releases_on_genre_id"
+  add_index "genre_releases", ["release_id"], :name => "index_genre_releases_on_release_id"
+
   create_table "genre_tracks", :force => true do |t|
     t.integer  "track_id"
     t.integer  "genre_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "genre_tracks", ["genre_id"], :name => "index_genre_tracks_on_genre_id"
+  add_index "genre_tracks", ["track_id"], :name => "index_genre_tracks_on_track_id"
 
   create_table "genres", :force => true do |t|
     t.string   "name"
@@ -101,6 +122,9 @@ ActiveRecord::Schema.define(:version => 20130228213203) do
     t.datetime "updated_at",  :null => false
   end
 
+  add_index "release_tracks", ["release_id"], :name => "index_release_tracks_on_release_id"
+  add_index "release_tracks", ["track_id"], :name => "index_release_tracks_on_track_id"
+
   create_table "releases", :force => true do |t|
     t.string   "name"
     t.integer  "release_kind_id"
@@ -112,6 +136,10 @@ ActiveRecord::Schema.define(:version => 20130228213203) do
     t.integer  "user_id"
   end
 
+  add_index "releases", ["label_id"], :name => "index_releases_on_label_id"
+  add_index "releases", ["release_kind_id"], :name => "index_releases_on_release_kind_id"
+  add_index "releases", ["user_id"], :name => "index_releases_on_user_id"
+
   create_table "tracks", :force => true do |t|
     t.string   "name"
     t.string   "duration"
@@ -120,6 +148,8 @@ ActiveRecord::Schema.define(:version => 20130228213203) do
     t.datetime "updated_at", :null => false
     t.integer  "user_id"
   end
+
+  add_index "tracks", ["user_id"], :name => "index_tracks_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "first_name"
