@@ -1,11 +1,16 @@
 Skrimply::Application.routes.draw do
   devise_for :users
 
-  resources :artists
   resources :releases do
     resources :tracks, :only => [:create, :new]
   end
-  resources :tracks
+
+  resources :tracks do
+    resources :defintions, :only => [:create]
+  end
+
+  resources :artists
+  resources :defintions
   resources :genres
   resources :users, :only => [:index, :show]
 
