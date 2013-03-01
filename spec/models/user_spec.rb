@@ -22,5 +22,6 @@
 require 'spec_helper'
 
 describe User do
+  # REV: Time to add some tests! No more YOLO driven development :) Start by writing tests for all your model methods.
   pending "add some examples to (or delete) #{__FILE__}"
 end

@@ -3,5 +3,6 @@
 </div>
 
 <% @genres.each do |genre| %>
+  <!-- REV: Try to be consistent in using either just the object (genre) or the path helper genre_path(genre). -->
   <h3><%= link_to genre.name, genre %></h3>
 <% end %>
