@@ -1,5 +1,7 @@
 class ArtistsController < ApplicationController
-before_filter :authenticate_user!
+
+  before_filter :authenticate_user!, :only => [:new, :create]
+
   def index
     @artists = Artist.all
   end
@@ -23,6 +25,7 @@ before_filter :authenticate_user!
     if @artist.save
       redirect_to @artist, notice: 'Artist created.'
     else
+      debugger
       render action: "new"
     end
   end
