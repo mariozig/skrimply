@@ -6,6 +6,5 @@ class ReleaseTrack < ActiveRecord::Base
 
   attr_accessible :disc_number, :position, :release_id, :track_id
 
-  validates :release_id, :presence => true
-  validates :track_id, :presence => true
+  validates :position, :numericality => { :only_integer => true }
 end

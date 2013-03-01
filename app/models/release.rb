@@ -12,10 +12,6 @@ class Release < ActiveRecord::Base
 
   attr_accessible :label_id, :location, :name, :release_date, :release_kind_id, :owning_artist_ids
 
-  validates :genre_id, :presence => true
-  validates :release_kind_id, :presence => true
-  validates :owning_artist_ids, :presence => true
-
   # Since we typically only have 1 release owner, this is a convenience method
   def owning_artist
     owning_artists.first

@@ -16,13 +16,10 @@ class Track < ActiveRecord::Base
   has_many :releases, :through => :release_tracks
 
   accepts_nested_attributes_for :release_tracks,
-                                :reject_if => proc { |attrs| attrs.all? { |k, v| v.blank? } }
+                                :reject_if => :all_blank
 
   attr_accessible :duration, :lyrics, :name, :genre_ids, :owning_artist_ids,
                   :featuring_artist_ids, :release_tracks_attributes
-
-  validates :submitting_user, :presence => true
-  validates :owning_artist_ids, :presence => true
 
   # Since we typically only have 1 track owner, this is a convenience method
   def owning_artist
