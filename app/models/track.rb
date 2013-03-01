@@ -42,4 +42,9 @@ class Track < ActiveRecord::Base
   def owning_artist
     owning_artists.first
   end
+
+  def owning_artist
+    owning_artists.first
+  end
+
 end

@@ -15,6 +15,7 @@ class TracksController < ApplicationController
 
   def edit
     @track = Track.find(params[:id])
+    @track.release_tracks.build if @track.release_tracks.empty?
   end
 
   def create

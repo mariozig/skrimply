@@ -12,6 +12,8 @@
 #
 
 class ReleaseTrack < ActiveRecord::Base
+  after_save :destroy_if_empty_release
+
   belongs_to :release
   belongs_to :track, :inverse_of => :release_tracks
 
@@ -20,4 +22,10 @@ class ReleaseTrack < ActiveRecord::Base
   attr_accessible :disc_number, :position, :release_id, :track_id
 
   validates :position, :numericality => { :only_integer => true }
+  validates :track_id, :presence => true
+
+  private
+    def destroy_if_empty_release
+      destroy if self.release_id.nil?
+    end
 end

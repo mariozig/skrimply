@@ -24,7 +24,6 @@
   <%= f.simple_fields_for :release_tracks do |rt| %>
     <%= rt.association :release %>
     <%= rt.input :position %>
-    <%= rt.input :release_id, as: :hidden %>
   <% end %>
 
   <div class="form-actions">
