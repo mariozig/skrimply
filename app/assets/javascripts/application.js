@@ -18,3 +18,4 @@
 //= require bootstrap
 
 //= require rangy-core-1.2.3.js
+//= require jquery.flexslider
