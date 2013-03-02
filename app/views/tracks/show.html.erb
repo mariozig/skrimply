@@ -2,40 +2,67 @@
   <h1><%= @track.name %> <small>track</small></h1>
 </div>
 
-<h2>Submitted By</h2>
-<h4><%= @track.submitting_user.display_name %></h4>
+<div class="row">
 
-<h2>Authoring Artist</h2>
-<%= link_to @track.owning_artist.name.titleize, artist_path(@track.owning_artist) %>
+  <div class="span4">
+    <h2>Submitted By</h2>
+    <h4><%= @track.submitting_user.display_name %></h4>
+    <hr>
+    <h2>Duration</h2>
+    <%= @track.duration %>
+  </div>
 
-<h2>Featuring Artists</h2>
-<% @track.featuring_artists.each do |artist| %>
-  <%= link_to artist.name.titleize, artist_path(artist) %>
-<% end %>
+  <div class="span4">
+    <h2>Authoring Artist</h2>
+    <%= link_to @track.owning_artist.name.titleize, artist_path(@track.owning_artist) %>
+    <hr>
+    <h2>Featuring Artists</h2>
+    <% @track.featuring_artists.each do |artist| %>
+      <%= link_to artist.name.titleize, artist_path(artist) %>
+    <% end %>
+  </div>
 
-<h2>Duration</h2>
-<%= @track.duration %>
-
-<h2>Lyrics</h2>
-<div id="lyrics">
-  <%= simple_format(@track.lyrics) %>
+  <div class="span4">
+    <h2>Genres</h2>
+    <ul>
+      <% @track.genres.each do |genre| %>
+        <li>
+          <%= link_to genre.name.titleize, genre_path(genre) %>
+        </li>
+      <% end %>
+    </ul>
+    <hr>
+    <h2>On Releases</h2>
+    <p>
+      <% @track.release_tracks.each do |release_track| %>
+        <%= link_to release_track.release.name.titleize, release_path(release_track.release) %> as track #<%= release_track.position %>
+      <% end %>
+    </p>
+  </div>
 </div>
 
-<h2>Genres</h2>
-<ul>
-  <% @track.genres.each do |genre| %>
-    <li>
-      <%= link_to genre.name.titleize, genre_path(genre) %>
-    </li>
-  <% end %>
-</ul>
+<hr>
 
-<h2>On Releases</h2>
-<p>
-  <% @track.release_tracks.each do |release_track| %>
-    <%= link_to release_track.release.name.titleize, release_path(release_track.release) %> as track #<%= release_track.position %>
-  <% end %>
-</p>
+<div class="row">
+  <div class="span5">
+    <h1>Lyrics</h1>
+    <div id="lyrics">
+      <%= simple_format @track.lyrics %>
+    </div>
+  </div>
+  <div class="span3">
+    <h2>Definitions</h2>
+    <% @track.definitions.each do |definition| %>
+      <%= link_to definition.submitting_user.display_name, definition.submitting_user %> said...
+      <%= simple_format definition.text %>
+    <% end %>
+  </div>
+  <div class="span4">
+    sidebar
+  </div>
+</div>
+
+
 
 <%= link_to 'Edit', edit_track_path(@track) %> |
 <%= link_to 'Back', tracks_path %>

@@ -5,7 +5,6 @@ class TracksController < ApplicationController
 
   def show
     @track = Track.find(params[:id])
-    @definition = @track.definitions.build
   end
 
   def new

@@ -1,4 +1,4 @@
-<%= simple_form_for(@definition) do |f| %>
+<%= simple_form_for(Definition.new) do |f| %>
   <div id="definitionModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="definitionModal" aria-hidden="true">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -18,7 +18,7 @@
                              :input_html => {
                                :cols => 50, :rows => 5
                              } %>
-          <%= f.input :track_id, :as => :hidden %>
+          <%= f.hidden_field :track_id, :value =>  @track.id %>
         <% else %>
           You must <a href="#loginModal" role="button" data-toggle="modal">be signed in</a>
           or
