@@ -17,5 +17,10 @@ class Definition < ActiveRecord::Base
   belongs_to :track
   belongs_to :submitting_user, :class_name => "User", :foreign_key => "user_id"
 
-  attr_accessible :text, :track_id
+  attr_accessible :text, :track_id, :range_start, :range_end, :left_to_right_selection
+
+  validates :track_id, :presence => true
+  validates :range_start, :presence => true
+  validates :range_end, :presence => true
+  validates :text, :presence => true
 end
