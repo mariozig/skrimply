@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require_tree .
 //
-// Loads all Bootstrap javascripts
 //= require bootstrap
 //= require jquery.flexslider
 //= require rangy-core
