@@ -26,7 +26,7 @@ $(function() {
 
     // Setup the modal's form fields
     $("#definition_backward_selection").val(
-      savedSelection.backward === true ? "yes" : "no"
+      savedSelection.backward === true ? "1" : "0"
     );
     $("#definition_range_start").val(savedSelection.characterRange.start);
     $("#definition_range_end").val(savedSelection.characterRange.end);
