@@ -68,11 +68,11 @@ ActiveRecord::Schema.define(:version => 20130304061608) do
     t.text     "text"
     t.integer  "track_id"
     t.integer  "user_id"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
-    t.integer  "range_start",             :null => false
-    t.integer  "range_end",               :null => false
-    t.boolean  "left_to_right_selection"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.integer  "range_start",        :null => false
+    t.integer  "range_end",          :null => false
+    t.boolean  "backward_selection"
   end
 
   add_index "definitions", ["track_id"], :name => "index_definitions_on_track_id"
