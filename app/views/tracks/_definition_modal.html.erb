@@ -19,6 +19,9 @@
                                :cols => 50, :rows => 5
                              } %>
           <%= f.hidden_field :track_id, :value =>  @track.id %>
+          <%= f.hidden_field :range_start %>
+          <%= f.hidden_field :range_end %>
+          <%= f.hidden_field :backward_selection %>
         <% else %>
           You must <a href="#loginModal" role="button" data-toggle="modal">be signed in</a>
           or
