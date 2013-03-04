@@ -42,7 +42,6 @@ $(function() {
   // - It is inside of a given containerNode
   // - The ranger is longer than 5 characters
   function isValidSelection(containerNode, selectionRange){
-    console.log(selectionRange.toCharacterRange());
     if(selectionRange.getNodes().length !== 0
        && selectionRange.getNodes()[0].compareDocumentPosition(containerNode) === 10
        && (selectionRange.toCharacterRange().end - selectionRange.toCharacterRange().start) >= 5
