@@ -17,4 +17,5 @@
 // Loads all Bootstrap javascripts
 //= require bootstrap
 
-//= require rangy-core-1.2.3.js
+//= require rangy-core.js
+//= require rangy-textrange.js

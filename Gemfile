@@ -23,6 +23,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'rangy-rails'
 
 group :development do
   gem 'rspec-rails'
