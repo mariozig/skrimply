@@ -14,7 +14,12 @@
 //= require jquery_ujs
 //= require_tree .
 //
+//= require underscore
+//
 //= require bootstrap
 //= require jquery.flexslider
+//
 //= require rangy-core
 //= require rangy-textrange
+//= require rangy-cssclassapplier
+//= require rangy-highlighter

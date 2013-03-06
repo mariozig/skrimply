@@ -1,8 +1,37 @@
 $(function() {
+  $.getJSON(Skrimply.track_definitions_url, function(data) {
+    var definitions = data;
 
-  rangy.init();
+    var allDefinedCharacters = function(){
+      return _.flatten(_.map(definitions, function(definition){
+        return _.range(definition.range_start, definition.range_end);
+      }));
+    }();
+    console.log(allDefinedCharacters.sort());
+
+    var characterOverlaps = function(){
+      var characterOverlaps = {};
+      _.each(allDefinedCharacters, function(character){
+        if(_.has(characterOverlaps, character)){
+          characterOverlaps[character] = characterOverlaps[character] + 1;
+        } else {
+          characterOverlaps[character] = 1;
+        }
+      });
+
+      return characterOverlaps;
+    }()
+    console.log(characterOverlaps);
+
+
+  })
+  // .success(function() { alert("second success"); })
+  // .error(function() { alert("error"); })
+  // .complete(function() { alert("complete"); });
 
   $("#lyrics").mouseup(function(){
+    rangy.init();
+
     // Rangy works with DOM object, not a jQuery objects
     var lyricsDivDomObject = $("#lyrics").get(0);
 
@@ -33,7 +62,7 @@ $(function() {
     $("#selectedSongLyrics").html(selectionRange.toHtml());
 
     // Bring in the modal
-    $("#definitionModal").modal('toggle');
+    // $("#definitionModal").modal('toggle');
   });
 
   // Returns true if a selection is considered valid
@@ -52,3 +81,9 @@ $(function() {
   }
 
 });
+
+// Skrimply.DefinitionRange = function(start, end){
+//   this.start = start;
+//   this.end = end;
+//   this.count = 1;
+// };
