@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130304061608) do
+ActiveRecord::Schema.define(:version => 20130306205456) do
 
   create_table "artist_genres", :force => true do |t|
     t.integer  "artist_id"
@@ -68,11 +68,10 @@ ActiveRecord::Schema.define(:version => 20130304061608) do
     t.text     "text"
     t.integer  "track_id"
     t.integer  "user_id"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
-    t.integer  "range_start",        :null => false
-    t.integer  "range_end",          :null => false
-    t.boolean  "backward_selection"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "range_start", :null => false
+    t.integer  "range_end",   :null => false
   end
 
   add_index "definitions", ["track_id"], :name => "index_definitions_on_track_id"
