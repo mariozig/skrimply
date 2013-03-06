@@ -5,6 +5,9 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <script type="text/javascript">
+    var Skrimply = {};
+  </script>
 </head>
 <body>
 
@@ -44,5 +47,6 @@
 
 <%= render "devise/sessions/new_modalized" %>
 <%= render "devise/registrations/new_modalized" %>
+
 </body>
 </html>
