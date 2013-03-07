@@ -5,21 +5,16 @@ $(function() {
     var definitions = data;
 
     var highlighter = rangy.createHighlighter();
-    highlighter.addClassApplier(rangy.createCssClassApplier("highlight1", {
-      ignoreWhiteSpace: true
-    }));
-
-    highlighter.addClassApplier(rangy.createCssClassApplier("highlight2", {
-      ignoreWhiteSpace: true
-    }));
-
-    highlighter.addClassApplier(rangy.createCssClassApplier("highlight3", {
-      ignoreWhiteSpace: true
-    }));
-
     var highlightableRanges = getHighlightableRanges(definitions);
+
+    // applies correct highlight classes based on overlaps
+    _.each(highlightableRanges, function(overlap, index){
+      highlighter.addClassApplier(rangy.createCssClassApplier("highlight"+index, {
+        ignoreWhiteSpace: true
+      }));
+    });
+
     var serializedHighlights = serializeRangesForRangy(highlightableRanges);
-    // serializedHighlights = "type:textContent|7$131$1$highlight$lyrics";
     highlighter.deserialize(serializedHighlights);
   })
   // .success(function() { alert("second success"); })
@@ -140,7 +135,7 @@ $(function() {
                            "$lyrics";
       });
     });
-    console.log(serialized);
+
     return serialized;
   }
 

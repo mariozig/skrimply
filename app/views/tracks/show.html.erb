@@ -52,11 +52,7 @@
   </div>
   <div class="span3">
     <h2>Definitions</h2>
-    <% @track.definitions.each do |definition| %>
-      <%= link_to definition.submitting_user.display_name, definition.submitting_user %> said...
-      <%= simple_format definition.text %>
-    <% end %>
-  </div>
+    <%= render :partial => "definition", :collection => @track.definitions %>  </div>
   <div class="span4">
     sidebar
   </div>
