@@ -15,3 +15,5 @@
 /tmp
 .DS_Store
 *(Autosaved).graffle
+# Ignore application configuration
+/config/application.yml
