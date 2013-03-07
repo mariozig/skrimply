@@ -1,15 +1,31 @@
 $(function() {
+  rangy.init();
+
   $.getJSON(Skrimply.track_definitions_url, function(data) {
     var definitions = data;
+    var first = definitions[0];
+
+    var highlighter = rangy.createHighlighter();
+
+    highlighter.addClassApplier(rangy.createCssClassApplier("highlight", {
+      ignoreWhiteSpace: true
+    }));
+
+    var serializedHighlights = "type:textContent|";
+    serializedHighlights = serializedHighlights+
+                           first.range_start+
+                           "$"+first.range_end+
+                           "$1$highlight$lyrics";
+
+    highlighter.deserialize(serializedHighlights);
 
     var allDefinedCharacters = function(){
       return _.flatten(_.map(definitions, function(definition){
         return _.range(definition.range_start, definition.range_end);
       }));
     }();
-    console.log(allDefinedCharacters.sort());
 
-    var characterOverlaps = function(){
+    var characterIndexToOverlapCount = function(){
       var characterOverlaps = {};
       _.each(allDefinedCharacters, function(character){
         if(_.has(characterOverlaps, character)){
@@ -21,48 +37,76 @@ $(function() {
 
       return characterOverlaps;
     }()
-    console.log(characterOverlaps);
 
+    var overlapCountToIndexes = {};
+    var rangezilla = {};
+    var values = _.uniq(_.values(characterIndexToOverlapCount));
 
+    // builds the keys
+    _.each(values, function(value){
+      overlapCountToIndexes[value] = [];
+      rangezilla[value] = [];
+    });
+
+    // Populates with indexes
+    _.each(_.keys(characterIndexToOverlapCount), function(key){
+      overlapCountToIndexes[characterIndexToOverlapCount[key]].push(key);
+    });
+
+    // Builds out rangezilla.
+    var sequences = [];
+    _.each(_.keys(overlapCountToIndexes), function(key){
+      var values = overlapCountToIndexes[key].sort(sortByNumber);
+      var temp = [];
+      for (var i = 0; i < values.length; i++) {
+        var thisPlusOne = parseInt(values[i]) + 1;
+        var nextItem = parseInt(values[i+1]);
+        temp.push(values[i]);
+        if(thisPlusOne !== nextItem){
+          sequences.push(temp);
+          temp = [];
+        }
+      };
+
+      rangezilla[key].push(sequences);
+      sequences = [];
+    });
+
+    console.log("overlapCountToIndexes");
+    console.log(overlapCountToIndexes);
+    console.log("rangezilla");
+    console.log(rangezilla);
   })
   // .success(function() { alert("second success"); })
   // .error(function() { alert("error"); })
   // .complete(function() { alert("complete"); });
 
   $("#lyrics").mouseup(function(){
-    rangy.init();
-
-    // Rangy works with DOM object, not a jQuery objects
-    var lyricsDivDomObject = $("#lyrics").get(0);
-
     rangy.getSelection().expand("word", { trim: true });
+    var definer = rangy.createHighlighter();
 
-    // Gets the first Object representing the selected text
-    // (...it is literally, just an Object)
-    var savedSelection = rangy.getSelection()
-                              .saveCharacterRanges(lyricsDivDomObject)[0];
+    definer.addClassApplier(rangy.createCssClassApplier("adding-definition", {
+      ignoreWhiteSpace: true
+    }));
 
-    // Build out a Range object based on the selection
-    var selectionRange = rangy.createRangyRange(lyricsDivDomObject);
-    selectionRange.selectCharacters(lyricsDivDomObject,
-                           savedSelection.characterRange.start,
-                           savedSelection.characterRange.end);
+    definer.highlightSelection("adding-definition", null, "lyrics");
+
+    var selection = function(){
+      return definer.highlights[0];
+    }();
 
     // Check if the selection is valid
-    if(!isValidSelection(lyricsDivDomObject, selectionRange)){
+    if(!isValidSelection($("#lyrics").get(0), selection.getRange())){
       return true;
     }
 
     // Setup the modal's form fields
-    $("#definition_backward_selection").val(
-      savedSelection.backward === true ? "1" : "0"
-    );
-    $("#definition_range_start").val(savedSelection.characterRange.start);
-    $("#definition_range_end").val(savedSelection.characterRange.end);
-    $("#selectedSongLyrics").html(selectionRange.toHtml());
+    $("#definition_range_start").val(selection.characterRange.start);
+    $("#definition_range_end").val(selection.characterRange.end);
+    $("#selectedSongLyrics").text(selection.getText());
 
     // Bring in the modal
-    // $("#definitionModal").modal('toggle');
+    $("#definitionModal").modal('toggle');
   });
 
   // Returns true if a selection is considered valid
@@ -70,20 +114,18 @@ $(function() {
   // - It contains DOM nodes
   // - It is inside of a given containerNode
   // - The ranger is longer than 5 characters
-  function isValidSelection(containerNode, selectionRange){
-    if(selectionRange.getNodes().length !== 0
-       && selectionRange.getNodes()[0].compareDocumentPosition(containerNode) === 10
-       && (selectionRange.toCharacterRange().end - selectionRange.toCharacterRange().start) >= 5
+  function isValidSelection(containerNode, range){
+    if(range.getNodes().length !== 0
+       && range.getNodes()[0].compareDocumentPosition(containerNode) === 10
+       && (range.toCharacterRange().end - range.toCharacterRange().start) >= 5
       ){
       return true;
     }
     return false;
   }
 
-});
+  function sortByNumber(a,b){
+    return(a-b)
+  }
 
-// Skrimply.DefinitionRange = function(start, end){
-//   this.start = start;
-//   this.end = end;
-//   this.count = 1;
-// };
+});
