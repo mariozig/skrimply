@@ -3,25 +3,24 @@ $(function() {
 
   $.getJSON(Skrimply.track_definitions_url, function(data) {
     var definitions = data;
-    var first = definitions[0];
 
     var highlighter = rangy.createHighlighter();
-
-    highlighter.addClassApplier(rangy.createCssClassApplier("highlight", {
+    highlighter.addClassApplier(rangy.createCssClassApplier("highlight1", {
       ignoreWhiteSpace: true
     }));
 
-    var serializedHighlights = "type:textContent|";
-    serializedHighlights = serializedHighlights+
-                           first.range_start+
-                           "$"+first.range_end+
-                           "$1$highlight$lyrics";
+    highlighter.addClassApplier(rangy.createCssClassApplier("highlight2", {
+      ignoreWhiteSpace: true
+    }));
 
-    highlighter.deserialize(serializedHighlights);
+    highlighter.addClassApplier(rangy.createCssClassApplier("highlight3", {
+      ignoreWhiteSpace: true
+    }));
+
     var highlightableRanges = getHighlightableRanges(definitions);
-
-    console.log(highlightableRanges);
-
+    var serializedHighlights = serializeRangesForRangy(highlightableRanges);
+    // serializedHighlights = "type:textContent|7$131$1$highlight$lyrics";
+    highlighter.deserialize(serializedHighlights);
   })
   // .success(function() { alert("second success"); })
   // .error(function() { alert("error"); })
@@ -127,6 +126,24 @@ $(function() {
 
     return highlightableRanges;
   }
+
+  function serializeRangesForRangy(highlightableRanges){
+    var serialized = "type:textContent";
+    _.each(highlightableRanges, function(obj, index){
+      var ranges = _.pluck(obj, "range");
+      _.each(ranges, function(range){
+        serialized = serialized+
+                           "|"+
+                           range.start+
+                           "$"+range.end+
+                           "$1$highlight"+index+
+                           "$lyrics";
+      });
+    });
+    console.log(serialized);
+    return serialized;
+  }
+
   // Returns true if a selection is considered valid
   // A selection is valid under the following conditions:
   // - It contains DOM nodes
