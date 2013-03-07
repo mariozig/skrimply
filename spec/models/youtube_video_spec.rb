@@ -9,8 +9,8 @@
 #  updated_at :datetime         not null
 #
 
-class YoutubeVideo < ActiveRecord::Base
-  belongs_to :track
+require 'spec_helper'
 
-  attr_accessible :embed_html
+describe YoutubeVideo do
+  pending "add some examples to (or delete) #{__FILE__}"
 end
