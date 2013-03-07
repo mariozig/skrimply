@@ -27,6 +27,7 @@ class Track < ActiveRecord::Base
   has_many :genres, :through => :genre_tracks
   has_many :release_tracks, :inverse_of => :track
   has_many :releases, :through => :release_tracks
+  has_one :youtube_video
 
   accepts_nested_attributes_for :release_tracks,
                                 :reject_if => :all_blank
@@ -47,4 +48,7 @@ class Track < ActiveRecord::Base
     owning_artists.first
   end
 
+  def youtubeable_title
+    "#{owning_artist.name} - #{name}"
+  end
 end

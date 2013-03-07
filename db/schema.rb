@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130306205456) do
+ActiveRecord::Schema.define(:version => 20130307215521) do
 
   create_table "artist_genres", :force => true do |t|
     t.integer  "artist_id"
@@ -146,12 +146,14 @@ ActiveRecord::Schema.define(:version => 20130306205456) do
     t.string   "name"
     t.string   "duration"
     t.text     "lyrics"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.integer  "user_id"
+    t.integer  "youtube_video_id"
   end
 
   add_index "tracks", ["user_id"], :name => "index_tracks_on_user_id"
+  add_index "tracks", ["youtube_video_id"], :name => "index_tracks_on_youtube_video_id"
 
   create_table "users", :force => true do |t|
     t.string   "first_name"
@@ -172,5 +174,11 @@ ActiveRecord::Schema.define(:version => 20130306205456) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "youtube_videos", :force => true do |t|
+    t.text     "embed_code"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
 end
