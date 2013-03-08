@@ -4,7 +4,11 @@ class TracksController < ApplicationController
   end
 
   def show
-    @track = Track.find(params[:id])
+    @track = Track.find(params[:id], :includes => [ :definitions,
+                                                   :owning_artists,
+                                                   :featuring_artists,
+                                                   :genres,
+                                                   :youtube_video ])
   end
 
   def new
