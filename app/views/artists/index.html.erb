@@ -5,19 +5,26 @@
 <table class="table table-bordered table-striped">
   <tr>
     <th>Name</th>
-    <th></th>
+    <th>Added</th>
     <th></th>
   </tr>
 
 <% @artists.each do |artist| %>
   <tr>
     <td><%= link_to artist.name, artist %></td>
-    <td><%= link_to 'Edit', edit_artist_path(artist) %></td>
-    <td><%= link_to 'Destroy', artist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= time_ago_in_words artist.created_at %> ago</td>
+    <td>
+      <% if current_user == artist.submitting_user %>
+        <%= link_to 'Edit', edit_artist_path(artist) %> |
+        <%= link_to 'Destroy', artist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Artist', new_artist_path %>
+<% if user_signed_in? %>
+  <%= link_to 'New Artist', new_artist_path %>
+<% end %>
+
