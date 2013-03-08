@@ -18,7 +18,8 @@
   <div class="span4">
     <h2>Definitions</h2>
     <% if @track.definitions.empty? %>
-      None... YET!
+      <p>None... yet.</p>
+      <%= image_tag "rage-horror.png" %>
     <% else %>
       <%= render :partial => "definition", :collection => @track.definitions %>
     <% end %>
