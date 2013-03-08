@@ -8,7 +8,7 @@
 </div>
 
 <div class="row">
-  <div class="span4">
+  <div class="span5">
     <h1>Lyrics</h1>
     <div id="lyrics">
       <%= simple_format @track.lyrics %>
@@ -25,7 +25,7 @@
     <% end %>
   </div>
 
-  <div class="span4">
+  <div class="span3">
     <div class="well well-large">
       <h4>Track Information</h4>
       <hr>
@@ -36,7 +36,9 @@
 
       <% unless @track.featuring_artists.empty? %>
         <h5>Featured Artists</h5>
-        <%= @track.featuring_artists.map(&:name).to_sentence %>
+        <%= @track.featuring_artists.map do |artist|
+          link_to artist.name, artist
+          end.to_sentence %>
         <hr>
       <% end %>
 
@@ -54,11 +56,13 @@
 
       <% unless @track.release_tracks.empty? %>
         <h5>On Releases</h5>
-        <p>
+        <ul>
           <% @track.release_tracks.each do |release_track| %>
-            <%= link_to release_track.release.name.titleize, release_path(release_track.release) %> as track #<%= release_track.position %>
+            <li>
+              <%= link_to release_track.release.name.titleize, release_path(release_track.release) %> as track #<%= release_track.position %>
+            </li>
           <% end %>
-        </p>
+        </ul>
         <hr>
       <% end %>
 
@@ -83,7 +87,6 @@
     <h2>Watch</h2>
     <%= raw @track.youtube_video.embed_html %>
   <% end %>
-
 </div>
 
 
