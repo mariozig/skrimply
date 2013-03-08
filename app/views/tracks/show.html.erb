@@ -38,7 +38,7 @@
         <h5>Featured Artists</h5>
         <%= @track.featuring_artists.map do |artist|
           link_to artist.name, artist
-          end.to_sentence %>
+          end.to_sentence.html_safe %>
         <hr>
       <% end %>
 
