@@ -27,6 +27,7 @@ body {
 .highlight1 {
   background-color: #FFFFCC;
 }
+
 .highlight2 {
   background-color: #FFFF99;
 }
@@ -57,3 +58,12 @@ footer {
 ::-webkit-selection {
   background:#A366E0;
 }
+
+#definition_text {
+  height: 125px;
+  width: 100%;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+

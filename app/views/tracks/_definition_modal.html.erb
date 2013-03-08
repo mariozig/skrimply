@@ -7,17 +7,12 @@
     <div class="modal-body">
       <div class="left">
         <h3>These lyrics</h3>
-        <blockquote id="selectedSongLyrics"></blockquote>
+        <pre id="selectedSongLyrics"></pre>
       </div>
       <div class="right">
         <h3>...mean</h3>
         <% if user_signed_in? %>
-          <%= f.input :text, :as => :text,
-                             :label => false,
-                             :placeholder => "Your description here",
-                             :input_html => {
-                               :cols => 50, :rows => 5
-                             } %>
+          <%= f.text_area    :text, :placeholder => "Your description here" %>
           <%= f.hidden_field :track_id, :value =>  @track.id %>
           <%= f.hidden_field :range_start %>
           <%= f.hidden_field :range_end %>
