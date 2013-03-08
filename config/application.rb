@@ -66,5 +66,8 @@ module Skrimply
     config.assets.version = '1.0'
 
     config.assets.initialize_on_precompile = false
+
+    # Turn off quiet assets
+    # config.quiet_assets = false
   end
 end

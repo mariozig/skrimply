@@ -35,6 +35,7 @@ group :development do
   # Glitter
   gem "rails-erd"
   gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
+  gem 'quiet_assets'
 end
 
 

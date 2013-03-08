@@ -106,6 +106,8 @@ GEM
     orm_adapter (0.4.0)
     pg (0.14.1)
     polyglot (0.3.3)
+    quiet_assets (1.0.2)
+      railties (>= 3.1, < 5.0)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -194,6 +196,7 @@ DEPENDENCIES
   figaro
   jquery-rails
   pg
+  quiet_assets
   rails (= 3.2.12)
   rails-erd
   rangy-rails
