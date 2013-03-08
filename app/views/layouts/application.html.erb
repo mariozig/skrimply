@@ -24,14 +24,14 @@
         <li><%= link_to "Genres", genres_path %></li>
         <li><%= link_to "Users", users_path %></li>
       </ul>
-      <ul class="nav pull-right">
+      <div class="nav pull-right">
         <% if user_signed_in? %>
-          <li><%= link_to "Sign Out", :destroy_user_session, :method => :delete %></li>
+          <%= link_to "Sign Out", :destroy_user_session, :method => :delete, :class => "btn btn-danger" %>
         <% else %>
-          <li><a href="#loginModal" role="button" data-toggle="modal">Login</a></li>
-          <li><a href="#registerModal" role="button" data-toggle="modal">Register</a></li>
+          <a href="#loginModal" role="button" data-toggle="modal" class="btn btn-success">Login</a>
+          <a href="#registerModal" role="button" data-toggle="modal" class="btn btn-primary">Register</a>
         <% end %>
-      </ul>
+      </div>
     </div>
   </div>
 </div>

@@ -44,3 +44,16 @@ footer {
   margin-top: 91px;
   background: url(/assets/footer-bg.gif) center top repeat-x;
 }
+
+/** These are dedicated to Krust <3 **/
+::selection {
+  background:#A366E0;
+}
+
+::-moz-selection {
+  background:#A366E0;
+}
+
+::-webkit-selection {
+  background:#A366E0;
+}
