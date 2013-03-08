@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Skrimply</title>
+  <title>skrimp.ly</title>
+  <%= stylesheet_link_tag '//fonts.googleapis.com/css?family=Oswald' %>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -34,12 +35,19 @@
   </div>
 </div>
 
+<header id="overview" class="massive masthead">
+  <div class="container">
+    <h1>This is Skrimp.ly <small>(we are new)</small></h1>
+  </div>
+</header>
+
 <% if notice %>
   <div class="alert alert-success fade in" data-alert="alert">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
     <p><%= notice %></p>
   </div>
 <% end %>
+
 
 <div class="container">
   <%= yield %>
@@ -48,5 +56,26 @@
 <%= render "devise/sessions/new_modalized" %>
 <%= render "devise/registrations/new_modalized" %>
 
+
+<footer>
+  <div class="container">
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      <div class="span6">
+        <p>
+          <%= link_to '[ x ] blog','//blog.skrimp.ly' %>
+        </p>
+      </div>
+      <div class="span6">
+        <p class="pull-right">
+          <small>
+            You're awesome. &lt;3
+            <%= link_to 'Skrimp.ly', root_url %>
+          </small>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
 </body>
 </html>
