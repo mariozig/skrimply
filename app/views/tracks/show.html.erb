@@ -36,7 +36,7 @@
 
       <% unless @track.featuring_artists.empty? %>
         <h5>Featured Artists</h5>
-        <%= @track.featuring_artists.map do |artist|
+        <%= raw @track.featuring_artists.map do |artist|
           link_to artist.name, artist
           end.to_sentence %>
         <hr>
