@@ -1,6 +1,6 @@
 class TracksController < ApplicationController
   def index
-    @tracks = Track.all
+    @tracks = Track.all(:include => [:owning_artists, :featuring_artists])
   end
 
   def show
