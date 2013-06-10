@@ -1,55 +1,70 @@
 ruby "2.0.0"
 source 'https://rubygems.org'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-gem 'rails', '3.2.13'
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'rails', '4.0.0.rc1'
+
+# Use postgresql as the database for Active Record
 gem 'pg'
-gem 'simple_form'
-gem 'devise'
-gem 'youtube_it'
-gem 'figaro'
-gem 'thin'
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'bootstrap-sass', '~> 2.3.0.1'
+# Use SCSS for stylesheets
+gem 'sass-rails', '~> 4.0.0.rc1'
 
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
+# Use Uglifier as compressor for JavaScript assets
+gem 'uglifier', '>= 1.3.0'
 
-  gem 'uglifier', '>= 1.0.3'
+# Use CoffeeScript for .js.coffee assets and views
+gem 'coffee-rails', '~> 4.0.0'
+
+# Use jquery as the JavaScript library
+gem 'jquery-rails'
+
+# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+gem 'turbolinks'
+
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jbuilder', '~> 1.0.1'
+
+group :doc do
+  # bundle exec rake doc:rails generates the API under doc/api.
+  gem 'sdoc', require: false
 end
 
-gem 'jquery-rails'
-gem 'underscore-rails', :git => 'git://github.com/rweng/underscore-rails.git'
-gem 'rangy-rails'
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'guard-rspec'
+  gem 'cucumber'
+  gem 'cucumber-rails', require: false
+  gem 'database_cleaner'
+  gem 'shoulda-matchers'
+  gem 'capybara'
+  gem 'email_spec'
+  gem 'launchy'
+  gem 'debugger'
+end
 
 group :development do
-  gem 'rspec-rails'
-  gem "debugger"
-
   # Glitter
-  gem "rails-erd"
+  gem 'rails-erd'
   gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
+  # Turns off the Rails asset pipeline log
   gem 'quiet_assets'
 end
 
+# Authentication
+gem 'devise', '3.0.0.rc'
+gem 'simple_form'
 
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+# Access youtube API
+gem 'youtube_it'
 
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
+# Manages ENV variables and pushing them to Heroku
+gem 'figaro'
 
-# Use unicorn as the app server
-# gem 'unicorn'
+# Use thin for webserver
+gem 'thin'
 
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'debugger'
+# Javascript additions
+gem 'jquery-rails'
+gem 'underscore-rails', :git => 'git://github.com/rweng/underscore-rails.git'
+gem 'rangy-rails'

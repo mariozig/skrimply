@@ -1,96 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <title>skrimp.ly</title>
-  <%= stylesheet_link_tag '//fonts.googleapis.com/css?family=Oswald' %>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <title>Skrimply</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
-  <%= favicon_link_tag %>
-  <script type="text/javascript">
-    var Skrimply = {};
-  </script>
 </head>
 <body>
 
-<div class="navbar navbar-fixed-top navbar-inverse">
-  <div class="navbar-inner">
-    <div class="container">
-      <%= link_to "Skrimp.ly", root_url, :class => "brand" %>
-      <ul class="nav">
-        <li><%= link_to "Artists", artists_path %></li>
-        <li><%= link_to "Tracks", tracks_path %></li>
-        <li><%= link_to "Releases", releases_path %></li>
-        <li><%= link_to "Genres", genres_path %></li>
-        <li><%= link_to "Users", users_path %></li>
-      </ul>
-      <div class="nav pull-right">
-        <% if user_signed_in? %>
-          <%= link_to "Sign Out", :destroy_user_session, :method => :delete, :class => "btn btn-danger" %>
-        <% else %>
-          <a href="#loginModal" role="button" data-toggle="modal" class="btn btn-success">Login</a>
-          <a href="#registerModal" role="button" data-toggle="modal" class="btn btn-primary">Register</a>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>
-
-<header id="overview" class="massive masthead">
-  <div class="container">
-    <h1>This is Skrimp.ly <small>(we are new)</small></h1>
-  </div>
-</header>
-
-<% if notice %>
-  <div class="alert alert-success fade in" data-alert="alert">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <p><%= notice %></p>
-  </div>
-<% end %>
-
-
-<div class="container">
-  <%= yield %>
-</div>
-
-<%= render "devise/sessions/new_modalized" %>
-<%= render "devise/registrations/new_modalized" %>
-
-
-<footer>
-  <div class="container">
-    <div class="row">&nbsp;</div>
-    <div class="row">
-      <div class="span6">
-        <p>
-          <%= link_to '[ x ] blog','//blog.skrimp.ly' %>
-        </p>
-      </div>
-      <div class="span6">
-        <p class="pull-right">
-          <small>
-            You're awesome. &lt;3
-            <%= link_to 'Skrimp.ly', root_url %>
-          </small>
-        </p>
-      </div>
-    </div>
-  </div>
-</footer>
-
-
-<script type="text/javascript">
-if (typeof gaJsHost == 'undefined') {
-  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-}
-</script>
-<script type="text/javascript">
-try {
-var pageTracker = _gat._getTracker("UA-25929038-1");
-pageTracker._trackPageview();
-} catch(err) {}</script>
+<%= yield %>
 
 </body>
 </html>

@@ -1,14 +1,29 @@
 development:
   adapter: postgresql
-  database: development_skrimply
+  encoding: unicode
+  database: skrimply_development
+  pool: 5
+  username: mario
+  password:
   host: localhost
-  
+
+test: &test
+  adapter: postgresql
+  encoding: unicode
+  database: skrimply_test
+  pool: 5
+  username: mario
+  password:
+  host: localhost
+
 production:
   adapter: postgresql
-  database: production_skrimply
+  encoding: unicode
+  database: skrimply_production
+  pool: 5
+  username: mario
+  password:
   host: localhost
-  
-test:
-  adapter: postgresql
-  database: test_skrimply
-  host: localhost
+
+cucumber:
+  <<: *test
