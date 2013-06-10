@@ -1,0 +1,34 @@
+<%= simple_form_for(@track) do |f|  %>
+
+  <% if notification = f.error_notification %>
+    <div class="alert alert-error fade in">
+      <a class="close" data-dismiss="alert" href="#">&times;</a>
+      <%= notification %>
+    </div>
+  <% end %>
+
+  <legend>Track Info</legend>
+  <%= f.input :name %>
+
+  <%= f.input :duration %>
+
+  <%= f.association :genres %>
+
+  <%= f.input :lyrics %>
+
+  <%= f.association :owning_artists, as: :check_boxes %>
+
+  <%= f.association :featuring_artists, as: :check_boxes %>
+
+  <legend>Release Info (optional)</legend>
+  <%= f.simple_fields_for :release_tracks do |rt| %>
+    <%= rt.association :release %>
+    <%= rt.input :position %>
+  <% end %>
+
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= submit_tag 'Cancel', :type => :reset, :class => "btn btn-danger" %>
+  </div>
+
+<% end %>

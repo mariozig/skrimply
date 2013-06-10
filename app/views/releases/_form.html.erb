@@ -1,0 +1,25 @@
+<%= simple_form_for(@release) do |f|  %>
+
+  <% if notification = f.error_notification %>
+    <div class="alert alert-error fade in">
+      <a class="close" data-dismiss="alert" href="#">&times;</a>
+      <%= notification %>
+    </div>
+  <% end %>
+
+  <%= f.input :name %>
+
+  <%= f.association :owning_artists %>
+
+  <%= f.association :release_kind %>
+
+  <%= f.association :label %>
+
+  <%= f.input :release_date %>
+
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= submit_tag 'Cancel', :type => :reset, :class => "btn btn-danger" %>
+  </div>
+
+<% end %>

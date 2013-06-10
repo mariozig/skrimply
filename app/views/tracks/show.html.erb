@@ -1,0 +1,98 @@
+<div class="page-header">
+  <h1><%= @track.name %>
+    <small>by <%= link_to @track.owning_artist.name.titleize, artist_path(@track.owning_artist) %>
+    <% unless @track.featuring_artists.empty? %>
+      featuring <%= @track.featuring_artists.map(&:name).to_sentence %>
+    <% end %>
+    </small></h1>
+</div>
+
+<div class="row">
+  <div class="span5">
+    <h1>Lyrics</h1>
+    <div id="lyrics">
+      <%= simple_format @track.lyrics %>
+    </div>
+  </div>
+
+  <div class="span4">
+    <h2>Definitions</h2>
+    <% if @track.definitions.empty? %>
+      <p>None... yet.</p>
+      <%= image_tag "rage-horror.png" %>
+    <% else %>
+      <%= render :partial => "definition", :collection => @track.definitions %>
+    <% end %>
+  </div>
+
+  <div class="span3">
+    <div class="well well-large">
+      <h4>Track Information</h4>
+      <hr>
+
+      <h5>Artist</h5>
+      <%= link_to @track.owning_artist.name.titleize, artist_path(@track.owning_artist) %>
+      <hr>
+
+      <% unless @track.featuring_artists.empty? %>
+        <h5>Featured Artists</h5>
+        <%= @track.featuring_artists.map do |artist|
+          link_to artist.name, artist
+          end.to_sentence.html_safe %>
+        <hr>
+      <% end %>
+
+      <% unless @track.genres.empty? %>
+        <h5>Genres</h5>
+        <ul>
+          <% @track.genres.each do |genre| %>
+            <li>
+              <%= link_to genre.name.titleize, genre_path(genre) %>
+            </li>
+          <% end %>
+        </ul>
+        <hr>
+      <% end %>
+
+      <% unless @track.release_tracks.empty? %>
+        <h5>On Releases</h5>
+        <ul>
+          <% @track.release_tracks.each do |release_track| %>
+            <li>
+              <%= link_to release_track.release.name.titleize, release_path(release_track.release) %> as track #<%= release_track.position %>
+            </li>
+          <% end %>
+        </ul>
+        <hr>
+      <% end %>
+
+      <% unless @track.duration.empty? %>
+        <h5>Duration</h5>
+        <%= @track.duration %>
+        <hr>
+      <% end %>
+
+      <h5>Submitter</h5>
+      <%= link_to @track.submitting_user.display_name, @track.submitting_user %>
+
+    </div>
+
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <% unless @track.youtube_video.nil? %>
+    <h2>Watch</h2>
+    <%= raw @track.youtube_video.embed_html %>
+  <% end %>
+</div>
+
+
+
+<%= link_to 'Edit', edit_track_path(@track) %> |
+<%= link_to 'Back', tracks_path %>
+
+<%= render 'tracks/definition_modal' %>
+<%= render 'tracks/javascript_vars' %>
