@@ -41,6 +41,8 @@ group :development, :test do
   gem 'email_spec'
   gem 'launchy'
   gem 'debugger'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :development do
@@ -68,3 +70,6 @@ gem 'thin'
 gem 'jquery-rails'
 gem 'underscore-rails', :git => 'git://github.com/rweng/underscore-rails.git'
 gem 'rangy-rails'
+
+# Bootstrap
+gem 'bootstrap-sass', '~> 2.3.1.3'
