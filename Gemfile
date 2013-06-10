@@ -52,8 +52,8 @@ group :development do
 end
 
 # Authentication
-gem 'devise', '3.0.0.rc'
-gem 'simple_form'
+gem 'devise', '~> 3.0.0.rc'
+gem 'simple_form', '~> 3.0.0.rc'
 
 # Access youtube API
 gem 'youtube_it'
