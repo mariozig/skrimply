@@ -22,7 +22,7 @@ class Release < ActiveRecord::Base
   has_many :genres, :through => :genre_releases
   has_many :release_tracks
   has_many :tracks, :through => :release_tracks
-  has_many :owning_artist_releases, -> { :artistic_role_id => ArtisticRole.owner }, :class_name => "ArtistRelease"
+  has_many :owning_artist_releases, -> { where artistic_role_id: ArtisticRole.owner }, class_name: "ArtistRelease"
   has_many :owning_artists, :through => :owning_artist_releases, :source => :artist
 
   # attr_accessible :label_id, :location, :name, :release_date, :release_kind_id, :owning_artist_ids

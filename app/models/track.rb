@@ -17,9 +17,9 @@ class Track < ActiveRecord::Base
   has_many :definitions
   has_many :artist_tracks
   has_many :artists, :through => :artist_tracks
-  has_many :owning_artist_tracks, -> { where artistic_role_id: ArtisticRole.owner }, :class_name => "ArtistTrack"
+  has_many :owning_artist_tracks, -> { where artistic_role_id: ArtisticRole.owner }, class_name: "ArtistTrack"
   has_many :owning_artists, :through => :owning_artist_tracks, :source => :artist
-  has_many :featured_artist_tracks, -> { where artistic_role_id: ArtisticRole.featured }, :class_name => "ArtistTrack"
+  has_many :featured_artist_tracks, -> { where artistic_role_id: ArtisticRole.featured }, class_name: "ArtistTrack"
   has_many :featuring_artists, :through => :featured_artist_tracks, :source => :artist
   has_many :genre_tracks
   has_many :genres, :through => :genre_tracks
@@ -38,10 +38,6 @@ class Track < ActiveRecord::Base
   validates :owning_artist_ids, :presence => { :message => "at least 1 must be selected" }
 
   # Since we typically only have 1 track owner, this is a convenience method
-  def owning_artist
-    owning_artists.first
-  end
-
   def owning_artist
     owning_artists.first
   end
