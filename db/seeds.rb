@@ -36,11 +36,11 @@ genres = %w[Alternative
   Rap
   Reggae
   Rock
+  Rock\ &\ Roll
   Soul
   Techno
   Trance
   Trip-Hop]
-genres << "Rock & Roll"
 
 genres.each do |genre|
   Genre.create!(name: genre.downcase)
