@@ -17,8 +17,9 @@ class ArtistTrack < ActiveRecord::Base
 
   # attr_accessible :artist_id, :artistic_role_id, :track_id
 
-  validates :track_id, :uniqueness => {
-                         :scope => [:artistic_role_id, :artist_id],
-                         :message => "an artist cannot be featured on or own a track twice"
-                       }
+  # TODO: Add validations back
+  # validates :track_id, :uniqueness => {
+  #                        :scope => [:artistic_role_id, :artist_id],
+  #                        :message => "an artist cannot be featured on or own a track twice"
+  #                      }
 end
