@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: releases
+#
+#  id              :integer          not null, primary key
+#  name            :string(255)
+#  release_kind_id :integer
+#  label_id        :integer
+#  release_date    :string(255)
+#  location        :string(255)
+#  created_at      :datetime
+#  updated_at      :datetime
+#  user_id         :integer
+#
+
 class Release < ActiveRecord::Base
   belongs_to :label
   belongs_to :release_kind

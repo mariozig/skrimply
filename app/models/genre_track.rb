@@ -5,8 +5,8 @@
 #  id         :integer          not null, primary key
 #  track_id   :integer
 #  genre_id   :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  created_at :datetime
+#  updated_at :datetime
 #
 
 class GenreTrack < ActiveRecord::Base

@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: appearances
+#
+#  id         :integer          not null, primary key
+#  artist_id  :integer
+#  track_id   :integer
+#  created_at :datetime
+#  updated_at :datetime
+#  role       :string(255)      not null
+#  release_id :integer
+#
+
 class Appearance < ActiveRecord::Base
   ROLES = %w[owner featured]
 
