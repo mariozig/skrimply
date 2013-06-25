@@ -142,4 +142,5 @@ bangarang_album = Release.create!(name: "Bangarang",
                                   label: owsla_label,
                                   submitting_user: skrimplybot)
 bangarang_album.genres = [electronic_genre]
+bangarang_album.appearances.as_owner.create!(artist: skrillex)
 bangarang_album.cuts.create!(track: bangarang, position: 2)
