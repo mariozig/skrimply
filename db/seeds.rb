@@ -53,9 +53,6 @@ rock_genre = Genre.find_by_name("rock")
 house_genre = Genre.find_by_name("house")
 electronic_genre = Genre.find_by_name("electronic")
 
-owner_role = ArtisticRole.create!(role: "owner")
-featured_role = ArtisticRole.create!(role: "featured")
-
 album_release_kind = ReleaseKind.create!(name: "album")
 
 owsla_label = Label.create!(name: "OWSLA")
@@ -79,25 +76,21 @@ owsla_label = Label.create!(name: "OWSLA")
 # Label: none
 # Track Number on Album: 11
 # Definitions: none
-cake = Artist.create!(name: "Cake")
-cake.submitting_user = skrimplybot
-cake.save!
+cake = Artist.create!(name: "Cake", submitting_user: skrimplybot)
 cake.genres = [pop_genre, indie_genre, alternative_genre, rock_genre]
 
 nugget = Track.create!(name: "Nugget",
                        duration: "3:59",
                        lyrics: "crunch like nuts in the mouths of squirrels",
-                       owning_artist_ids: [cake.id])
-nugget.submitting_user = skrimplybot
-nugget.save!
+                       submitting_user: skrimplybot)
+nugget.appearances.as_owner.create!(artist: cake)
 nugget.genres << rock_genre
 
 open_book = Track.create!(name: "Open Book",
                           duration: "3:45",
                           lyrics: "polished hardwood floors",
-                          owning_artist_ids: [cake.id])
-open_book.submitting_user = skrimplybot
-open_book.save!
+                          submitting_user: skrimplybot)
+open_book.appearances.as_owner.create!(artist: cake)
 open_book.genres << rock_genre
 
 fashion_nugget_album = Release.create!(name: "Fashion Nugget",

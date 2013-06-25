@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130307215115) do
+ActiveRecord::Schema.define(version: 20130624225733) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "appearances", force: true do |t|
+    t.integer  "artist_id"
+    t.integer  "track_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "role"
+  end
+
+  add_index "appearances", ["artist_id"], name: "index_appearances_on_artist_id", using: :btree
+  add_index "appearances", ["track_id"], name: "index_appearances_on_track_id", using: :btree
 
   create_table "artist_genres", force: true do |t|
     t.integer  "artist_id"
@@ -37,25 +48,6 @@ ActiveRecord::Schema.define(version: 20130307215115) do
   add_index "artist_releases", ["artist_id"], name: "index_artist_releases_on_artist_id", using: :btree
   add_index "artist_releases", ["artistic_role_id"], name: "index_artist_releases_on_artistic_role_id", using: :btree
   add_index "artist_releases", ["release_id"], name: "index_artist_releases_on_release_id", using: :btree
-
-  create_table "artist_tracks", force: true do |t|
-    t.integer  "artist_id"
-    t.integer  "track_id"
-    t.integer  "artistic_role_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "artist_tracks", ["artist_id"], name: "index_artist_tracks_on_artist_id", using: :btree
-  add_index "artist_tracks", ["artistic_role_id"], name: "index_artist_tracks_on_artistic_role_id", using: :btree
-  add_index "artist_tracks", ["track_id"], name: "index_artist_tracks_on_track_id", using: :btree
-
-  create_table "artistic_roles", force: true do |t|
-    t.string   "role"
-    t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "artists", force: true do |t|
     t.string   "name"

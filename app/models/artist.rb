@@ -12,8 +12,8 @@
 class Artist < ActiveRecord::Base
   belongs_to :submitting_user, :class_name => "User", :foreign_key => "user_id"
 
-  has_many :artist_tracks
-  has_many :tracks, :through => :artist_tracks
+  has_many :appearances, inverse_of: :artist
+
   has_many :artist_releases
   has_many :releases, :through => :artist_releases
   has_many :artist_genres
