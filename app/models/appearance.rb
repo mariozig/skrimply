@@ -3,6 +3,7 @@ class Appearance < ActiveRecord::Base
 
   belongs_to :artist, inverse_of: :appearances
   belongs_to :track, inverse_of: :appearances
+  belongs_to :release, inverse_of: :appearances
 
   scope :as_owner, -> { where(role: 'owner') }
   scope :as_featured, -> { where(role: 'featured') }

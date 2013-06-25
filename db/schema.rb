@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130624225733) do
+ActiveRecord::Schema.define(version: 20130625025027) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,10 +21,12 @@ ActiveRecord::Schema.define(version: 20130624225733) do
     t.integer  "track_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "role"
+    t.string   "role",       null: false
+    t.integer  "release_id"
   end
 
   add_index "appearances", ["artist_id"], name: "index_appearances_on_artist_id", using: :btree
+  add_index "appearances", ["release_id"], name: "index_appearances_on_release_id", using: :btree
   add_index "appearances", ["track_id"], name: "index_appearances_on_track_id", using: :btree
 
   create_table "artist_genres", force: true do |t|
@@ -58,6 +60,18 @@ ActiveRecord::Schema.define(version: 20130624225733) do
 
   add_index "artists", ["name"], name: "index_artists_on_name", unique: true, using: :btree
   add_index "artists", ["user_id"], name: "index_artists_on_user_id", using: :btree
+
+  create_table "cuts", force: true do |t|
+    t.integer  "release_id"
+    t.integer  "track_id"
+    t.integer  "position"
+    t.integer  "disc_number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "cuts", ["release_id"], name: "index_cuts_on_release_id", using: :btree
+  add_index "cuts", ["track_id"], name: "index_cuts_on_track_id", using: :btree
 
   create_table "definitions", force: true do |t|
     t.text     "text"
@@ -109,18 +123,6 @@ ActiveRecord::Schema.define(version: 20130624225733) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "release_tracks", force: true do |t|
-    t.integer  "release_id"
-    t.integer  "track_id"
-    t.integer  "position"
-    t.integer  "disc_number"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "release_tracks", ["release_id"], name: "index_release_tracks_on_release_id", using: :btree
-  add_index "release_tracks", ["track_id"], name: "index_release_tracks_on_track_id", using: :btree
 
   create_table "releases", force: true do |t|
     t.string   "name"
