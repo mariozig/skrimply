@@ -16,15 +16,16 @@
 
   <%= f.input :lyrics %>
 
-  <%= f.association :owning_artists, as: :check_boxes %>
+  <%= f.collection_check_boxes :owning_artist_ids, Artist.all, :id, :name , checked: @track.owning_artists %>
+  <= f.association :owning_artists, as: :check_boxes %>
 
-  <%= f.association :featuring_artists, as: :check_boxes %>
+  <= f.association :featuring_artists, as: :check_boxes %>
 
   <legend>Release Info (optional)</legend>
-  <%= f.simple_fields_for :release_tracks do |rt| %>
-    <%= rt.association :release %>
-    <%= rt.input :position %>
-  <% end %>
+  <= f.simple_fields_for :release_tracks do |rt| %>
+    <= rt.association :release %>
+    <= rt.input :position %>
+  < end %>
 
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>

@@ -27,10 +27,10 @@
     <th>Name</th>
   </tr>
 
-  <% @release.release_tracks.each do |release_track| %>
+  <% @release.cuts.each do |cut| %>
     <tr>
-      <td><%= release_track.position %></td>
-      <td><%= link_to release_track.track.name, release_track.track %></td>
+      <td><%= cut.position %></td>
+      <td><%= link_to cut.track.name, cut.track %></td>
     </tr>
   <% end %>
 </table>

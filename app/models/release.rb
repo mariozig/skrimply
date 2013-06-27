@@ -16,9 +16,10 @@
 class Release < ActiveRecord::Base
   belongs_to :label
   belongs_to :release_kind
-  belongs_to :submitting_user, :class_name => "User", :foreign_key => "user_id"
+  belongs_to :submitting_user, class_name: 'User', foreign_key: 'user_id'
 
   has_many :appearances, inverse_of: :release
+  has_many :artists, through: :appearances
   has_many :cuts, inverse_of: :release
   has_many :genre_releases
   has_many :genres, :through => :genre_releases
@@ -33,5 +34,17 @@ class Release < ActiveRecord::Base
 
   def release_date_friendly
     release_date.nil? ? "unknown" : release_date
+  end
+
+  def owning_artists
+    artists.merge(Appearance.as_owner)
+  end
+
+  def owning_artist
+    owning_artists.first
+  end
+
+  def featuring_artists
+    artists.merge(Appearance.as_featured)
   end
 end

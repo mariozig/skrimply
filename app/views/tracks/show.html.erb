@@ -54,12 +54,12 @@
         <hr>
       <% end %>
 
-      <% unless @track.release_tracks.empty? %>
+      <% unless @track.cuts.empty? %>
         <h5>On Releases</h5>
         <ul>
-          <% @track.release_tracks.each do |release_track| %>
+          <% @track.cuts.each do |cut| %>
             <li>
-              <%= link_to release_track.release.name.titleize, release_path(release_track.release) %> as track #<%= release_track.position %>
+              <%= link_to cut.release.name.titleize, release_path(cut.release) %> as track #<%= cut.position %>
             </li>
           <% end %>
         </ul>
