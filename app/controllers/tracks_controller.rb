@@ -50,6 +50,6 @@ class TracksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def track_params
-      params.require(:track).permit(:duration, :lyrics, :name, :genre_ids)
+      params.require(:track).permit(:duration, :lyrics, :name, genre_ids: [], set_owning_artists: [], set_featuring_artists: [])
     end
 end
